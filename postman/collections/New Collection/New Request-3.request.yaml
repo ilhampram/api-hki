@@ -1,0 +1,12 @@
+$kind: http-request
+name: New Request
+url: http://127.0.0.1:8000/api/documents/trash
+method: GET
+body:
+  type: json
+  content: ""
+auth:
+  type: bearer
+  credentials:
+    token: Jyrg5FvT84gKESIz6sSJ2grMxZTeDnkSRHoIvAe438392f0e
+order: 3490265979297522

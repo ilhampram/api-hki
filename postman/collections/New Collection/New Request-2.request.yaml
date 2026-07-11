@@ -1,0 +1,18 @@
+$kind: http-request
+name: New Request
+url: http://127.0.0.1:8000/api/login
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"ilham@test.com\",\r
+
+    \    \"password\": \"123456\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: Jyrg5FvT84gKESIz6sSJ2grMxZTeDnkSRHoIvAe438392f0e
+order: 2236715651663489

@@ -1,0 +1,587 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API HKI",
+        "description": "Dokumentasi API HKI",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000",
+            "description": "Local Server"
+        }
+    ],
+    "paths": {
+        "/api/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Register User",
+                "operationId": "8a56853624e025573120a09a4c75d468",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Ilham"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "ilham@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Register berhasil"
+                    }
+                }
+            }
+        },
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login User",
+                "operationId": "a3b306d14572d1f4bd6c064b3233e7b8",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "password"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "example": "ilham@gmail.com"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login berhasil"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Logout User",
+                "operationId": "fe8f3429cd6979b3b4517e186505f9f9",
+                "responses": {
+                    "200": {
+                        "description": "Logout berhasil"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/documents": {
+            "get": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Menampilkan semua dokumen HKI",
+                "operationId": "479e53af7d4820aecb8f9534fdbe21aa",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil mengambil data dokumen"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Tambah Dokumen HKI",
+                "operationId": "9b247d60e8834d470666fba8e773edb4",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nomor_hki": {
+                                        "type": "string",
+                                        "example": "HKI001"
+                                    },
+                                    "judul": {
+                                        "type": "string",
+                                        "example": "Sistem Inventaris HKI"
+                                    },
+                                    "pemilik": {
+                                        "type": "string",
+                                        "example": "UNPAM"
+                                    },
+                                    "category_id": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "tanggal_daftar": {
+                                        "type": "string",
+                                        "example": "2026-07-11"
+                                    },
+                                    "status": {
+                                        "type": "string",
+                                        "example": "Pending"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Dokumen berhasil ditambahkan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/documents/{id}": {
+            "get": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Detail Dokumen",
+                "operationId": "0fa5befcdb9042b346d01baea49dee95",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Detail dokumen"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Update Dokumen",
+                "operationId": "b851458865e322163fe9b88595919255",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dokumen berhasil diperbarui"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Hapus Dokumen ke Recycle Bin",
+                "operationId": "889c107c27dc6b118dee932d1760f574",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dokumen masuk ke recycle bin"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/documents/search/{keyword}": {
+            "get": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Cari Dokumen",
+                "operationId": "cd157bf28c792681c56d5aa7e6a44e75",
+                "parameters": [
+                    {
+                        "name": "keyword",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Hasil pencarian"
+                    }
+                }
+            }
+        },
+        "/api/documents/status/{status}": {
+            "get": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Filter Dokumen Berdasarkan Status",
+                "operationId": "0b024ddf885c310f1035292b50d61bf3",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Data berdasarkan status"
+                    }
+                }
+            }
+        },
+        "/api/documents/dashboard": {
+            "get": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Dashboard dokumen",
+                "operationId": "7d9c94a93213b4c629b8d0c57859c87a",
+                "responses": {
+                    "200": {
+                        "description": "Data dashboard"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/statistics/categories": {
+            "get": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Statistik dokumen per kategori",
+                "operationId": "680964245a7f903df2403f4d48935880",
+                "responses": {
+                    "200": {
+                        "description": "Statistik dokumen"
+                    }
+                }
+            }
+        },
+        "/api/documents/{id}/download": {
+            "get": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Download PDF Dokumen",
+                "operationId": "9c3894d9d7b13268e679345d76550898",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File PDF berhasil didownload"
+                    }
+                }
+            }
+        },
+        "/api/documents/trash": {
+            "get": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Lihat Dokumen di Recycle Bin 🗑️",
+                "operationId": "253d14d49abe36418cb372cbdfef8dc6",
+                "responses": {
+                    "200": {
+                        "description": "Data dokumen yang dihapus"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/documents/{id}/restore": {
+            "put": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Restore Dokumen dari Recycle Bin ♻️",
+                "operationId": "26141b8724ec33739308369785da24df",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dokumen berhasil dipulihkan"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/documents/export/excel": {
+            "get": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Export Dokumen ke Excel 📊",
+                "operationId": "a7039e52d7675defa44fd9d117c05553",
+                "responses": {
+                    "200": {
+                        "description": "File Excel berhasil diexport"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/documents/export/pdf": {
+            "get": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Export Dokumen ke PDF 📄",
+                "operationId": "675a41c768470390c92e687c5d741030",
+                "responses": {
+                    "200": {
+                        "description": "File PDF berhasil diexport"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/documents/{id}/force-delete": {
+            "delete": {
+                "tags": [
+                    "Documents"
+                ],
+                "summary": "Hapus Dokumen Permanen 🗑️",
+                "operationId": "a5052edcbd5394eae4b6f76627883f94",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Dokumen berhasil dihapus permanen"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/activity-log": {
+            "get": {
+                "tags": [
+                    "Activity"
+                ],
+                "summary": "Lihat Activity Log 📋",
+                "operationId": "ebde391bb7d482d1199e028e7e0c0b3f",
+                "parameters": [
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 50
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Daftar activity log"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/dashboard/chart": {
+            "get": {
+                "tags": [
+                    "Dashboard"
+                ],
+                "summary": "Dashboard Chart Data 📈",
+                "operationId": "dfc6b5621c023cfc8bef01538ab42007",
+                "responses": {
+                    "200": {
+                        "description": "Data untuk chart dashboard"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/test": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Cek API",
+                "description": "Endpoint untuk mengecek status API",
+                "operationId": "fcf2e96a68d62874a47abb5f7fb1cdd5",
+                "responses": {
+                    "200": {
+                        "description": "Berhasil",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Authentication",
+            "description": "Authentication"
+        },
+        {
+            "name": "Documents",
+            "description": "Documents"
+        },
+        {
+            "name": "Activity",
+            "description": "Activity"
+        },
+        {
+            "name": "Dashboard",
+            "description": "Dashboard"
+        },
+        {
+            "name": "Test",
+            "description": "Test"
+        }
+    ]
+}

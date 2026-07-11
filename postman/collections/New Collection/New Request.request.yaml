@@ -1,0 +1,18 @@
+$kind: http-request
+name: New Request
+url: http://127.0.0.1:8000/api/categories
+method: GET
+body:
+  type: json
+  content: "{\r
+
+    \    \"email\": \"ilham@test.com\",\r
+
+    \    \"password\": \"123456\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: 4gL4PBLCS1qhuwnoUqcgbgN4FraZkaE5AR6r1e7S2992695f
+order: 1783758701969

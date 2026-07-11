@@ -1,0 +1,26 @@
+$kind: http-request
+name: New Request
+url: http://127.0.0.1:8000/api/documents
+method: GET
+body:
+  type: json
+  content: "{\r
+
+    \    \"nomor_hki\": \"HKI004\",\r
+
+    \    \"judul\": \"Aplikasi Monitoring HKI\",\r
+
+    \    \"pemilik\": \"UNPAM\",\r
+
+    \    \"category_id\": 1,\r
+
+    \    \"tanggal_daftar\": \"2026-07-10\",\r
+
+    \    \"status\": \"Pending\"\r
+
+    }"
+auth:
+  type: bearer
+  credentials:
+    token: 2idg6iwEptupZMTSHhBxJZrGJl1103eixTJsNQ2H39e923fd
+order: 1658665450082257
